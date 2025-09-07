@@ -1,5 +1,7 @@
 .vscode
 .venv
-dataset.csv
+*.csv
+*.svg
+*.zip
 .ipynb_checkpoints
 __pycache__
