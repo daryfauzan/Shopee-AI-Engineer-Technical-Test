@@ -1,0 +1,16 @@
+[project]
+name = "q4-vector-db"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "langchain>=0.3.27",
+    "langchain-community>=0.3.29",
+    "langchain-google-genai>=2.1.10",
+    "psycopg2-binary>=2.9.10",
+    "pypdf>=6.0.0",
+    "python-dotenv>=1.1.1",
+    "ruff>=0.12.12",
+    "tool>=0.8.0",
+]

@@ -1,6 +1,6 @@
 -- Schema
 CREATE TABLE vectors (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   vec FLOAT8[],
   norm FLOAT8,
   payload JSONB
@@ -8,14 +8,14 @@ CREATE TABLE vectors (
 
 -- Cosine similarity search
 CREATE OR REPLACE FUNCTION search_vectors(qvec FLOAT8[], topk INT)
-RETURNS TABLE (item_id INT, similarity FLOAT8) AS $$
+RETURNS TABLE (item_id INT, payload JSONB, similarity FLOAT8) AS $$
 DECLARE
     qnorm FLOAT8;
 BEGIN
     qnorm := sqrt((SELECT sum(x^2) FROM unnest(qvec) AS t(x)));
 
     RETURN QUERY
-    SELECT v.item_id,
+    SELECT v.id, v.payload, 
            (SELECT sum(x * y)
             FROM unnest(v.vec, qvec) AS t(x,y)) / (v.norm * qnorm) AS cosine_similarity
     FROM vectors v

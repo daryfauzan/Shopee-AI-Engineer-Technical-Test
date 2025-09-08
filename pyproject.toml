@@ -13,3 +13,8 @@ dependencies = [
     "pandas>=2.3.2",
     "seaborn>=0.13.2",
 ]
+
+[tool.uv.workspace]
+members = [
+    "src/Q4 Vector DB",
+]
