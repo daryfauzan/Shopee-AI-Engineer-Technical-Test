@@ -1,100 +1,40 @@
 
 ## Describe differences between REST API, MCP in the context of AI.
 
-**REST API (Representational State Transfer)**:
-- Traditional web service architecture using HTTP methods (GET, POST, PUT, DELETE)
-- Stateless communication between client and server
-- In AI context: Used for model inference endpoints, data retrieval, and integration with external services
-- Request-response pattern with JSON/XML payloads
-- Well-established with extensive tooling and documentation
+REST API and MCP differ significantly in their design, purpose, and use within the context of AI. A REST API (Representational State Transfer) is a traditional web service architecture that relies on HTTP methods such as GET, POST, PUT, and DELETE to facilitate stateless communication between clients and servers. In AI applications, REST APIs are commonly used for model inference endpoints, retrieving or sending data, and integrating with external services. They follow a request-response pattern, typically exchanging data in JSON or XML formats, and benefit from being a well-established standard with robust tooling, documentation, and widespread adoption.
 
-**MCP (Model Context Protocol)**:
-- Relatively new protocol specifically designed for AI agent interactions
-- Enables structured communication between AI systems and external tools/resources
-- Focuses on context sharing and tool integration for AI agents
-- Designed for more complex, stateful interactions that AI agents require
-- Optimized for the specific needs of LLM-based systems
+In contrast, the Model Context Protocol (MCP) is a newer protocol created specifically to address the needs of AI agent interactions. Unlike REST APIs, which are designed for general-purpose client-server communication, MCP focuses on enabling structured communication between AI systems and external tools or resources. It allows AI agents to share context more effectively and supports stateful, complex interactions that are essential for LLM-based systems to perform multi-step reasoning and tool use. MCP is therefore optimized for AI-first workflows, where maintaining context and integrating multiple resources dynamically is critical.
 
 ## How REST API, MCP, can improve the AI use case.
 
-**REST API Benefits**:
-- **Integration**: Connects AI systems with existing enterprise services and databases
-- **Scalability**: Load balancing and horizontal scaling for AI inference services
-- **Modularity**: Separates AI logic from application logic, enabling microservices architecture
-- **Accessibility**: Makes AI capabilities available to web and mobile applications
-- **Standardization**: Familiar interface for developers to consume AI services
+Both REST APIs and MCP play important roles in improving AI use cases, but they do so in different ways that reflect their design goals. REST APIs strengthen AI adoption by making integration with existing enterprise systems straightforward. They allow AI models to connect seamlessly with databases, web applications, and mobile platforms, while their stateless nature supports scalability through load balancing and horizontal scaling. By separating AI logic from application logic, REST APIs also promote modularity and fit well within a microservices architecture. Their standardized request-response model and widespread developer familiarity ensure that AI services are accessible, consistent, and easy to consume across diverse environments.
 
-**MCP Benefits**:
-- **Enhanced Context**: Provides richer context sharing between AI agents and tools
-- **Tool Integration**: Streamlined connection to databases, APIs, and external services
-- **Agent Orchestration**: Better coordination between multiple AI agents
-- **Semantic Understanding**: Protocol designed with AI workflow patterns in mind
-- **Efficiency**: Reduced overhead for AI-specific communication patterns
+MCP, on the other hand, enhances AI use cases by directly addressing the unique needs of AI agents and workflows. It enables richer context sharing between AI systems and tools, which is essential for maintaining continuity in multi-step reasoning tasks. MCP is designed for smooth integration with external resources, such as APIs and databases, and supports orchestrating multiple AI agents working together toward a common goal. Its focus on semantic understanding and AI workflow patterns reduces communication overhead and makes interactions more efficient than general-purpose protocols. By optimizing for context-driven, tool-augmented reasoning, MCP empowers AI systems to operate more intelligently and effectively in complex, dynamic environments.
 
 
 ## How do you ensure that your AI agent answers correctly?
 
-**Validation Strategies**:
-- **Ground Truth Comparison**: Validate against known correct answers in test datasets
-- **Multi-model Consensus**: Use multiple models and compare outputs for consistency
-- **Human-in-the-Loop**: Implement review processes for critical decisions
-- **Confidence Scoring**: Analyze model confidence levels and uncertainty quantification
+Ensuring that an AI agent answers correctly requires a combination of validation strategies, technical approaches, and continuous monitoring. One effective method is ground truth comparison, where model outputs are tested against known correct answers in benchmark datasets. In cases where absolute correctness is harder to determine, multi-model consensus can be applied by comparing results across different models to identify consistent outputs. For high-stakes applications, human-in-the-loop review processes add an additional safeguard, while confidence scoring helps quantify uncertainty so that potentially unreliable responses can be flagged.
 
-**Technical Approaches**:
-- **Retrieval-Augmented Generation (RAG)**: Verify answers against authoritative sources
-- **Fact-checking Pipelines**: Automated verification against knowledge bases
-- **Output Parsing**: Structured validation of response formats and constraints
-- **A/B Testing**: Compare different model versions or prompting strategies
+On the technical side, advanced methods such as Retrieval-Augmented Generation (RAG) allow the AI to ground its answers in authoritative sources, improving factual accuracy. Fact-checking pipelines can further validate outputs against structured knowledge bases, while output parsing ensures responses follow the required formats and constraints. A/B testing also plays a role by comparing different model versions or prompting strategies to determine which configurations yield the most reliable results.
 
-**Monitoring and Feedback**:
-- **Continuous Evaluation**: Regular testing on benchmark datasets
-- **User Feedback Loops**: Collect and incorporate user corrections
-- **Error Analysis**: Systematic analysis of failure modes and edge cases
-- **Version Control**: Track model performance across different deployments
+Finally, maintaining correctness requires ongoing monitoring and feedback. Continuous evaluation on benchmark datasets ensures performance does not degrade over time, while user feedback loops provide valuable real-world corrections that can refine the system. Error analysis helps identify recurring failure modes, guiding targeted improvements, and version control ensures that model performance is tracked across deployments. Together, these practices create a robust framework that not only improves immediate accuracy but also supports long-term reliability and trust in AI agents.
 
 ## Describe what can you do with Docker / Containerize environment in the context of AI
 
-**Model Deployment**:
-- **Reproducible Environments**: Ensure consistent runtime across development, staging, and production
-- **Dependency Management**: Package AI frameworks (PyTorch, TensorFlow) with specific versions
-- **GPU Support**: NVIDIA Docker containers for CUDA-enabled AI workloads
-- **Model Serving**: Containerized inference servers (TensorFlow Serving, TorchServe, Triton)
+Using Docker and containerized environments in the context of AI provides major benefits across model deployment, development, and operations. For deployment, containers make it possible to create reproducible environments, ensuring that models run consistently across development, staging, and production. They simplify dependency management by packaging AI frameworks like PyTorch or TensorFlow with exact version requirements, while GPU-enabled containers, such as those supported by NVIDIA Docker, allow seamless execution of CUDA-based workloads. Containers also streamline model serving, enabling inference through specialized servers like TensorFlow Serving, TorchServe, or NVIDIA Triton.
 
-**Development Benefits**:
-- **Isolation**: Separate different AI projects with conflicting dependencies
-- **Scalability**: Kubernetes orchestration for auto-scaling AI services
-- **CI/CD Integration**: Automated testing and deployment pipelines for ML models
-- **Resource Management**: CPU/GPU allocation and limits for AI workloads
+From a development perspective, Docker improves productivity and flexibility by isolating different AI projects, preventing dependency conflicts between frameworks and libraries. It also supports scalability when combined with orchestration platforms like Kubernetes, which can handle auto-scaling of AI workloads in response to demand. Integration with CI/CD pipelines further ensures that models can be tested, validated, and deployed automatically, reducing friction between data science and engineering teams. Resource management is another benefit, as containers make it easier to allocate and limit CPU or GPU usage for different AI tasks.
 
-**Operational Advantages**:
-- **Multi-environment Consistency**: Same container runs identically across cloud providers
-- **Microservices Architecture**: Break complex AI systems into manageable components
-- **Rolling Updates**: Deploy new model versions with zero downtime
-- **Monitoring**: Containerized logging and metrics collection for AI services
+Operationally, containerization guarantees consistency across different environments and cloud providers, enabling portability and simplifying infrastructure management. It also aligns well with microservices architectures, where complex AI systems can be broken down into smaller, containerized components that communicate efficiently. Rolling updates allow new model versions to be deployed with zero downtime, minimizing risks during upgrades. Additionally, containerized monitoring solutions make it possible to collect logs, track performance metrics, and ensure reliability in production AI systems. Altogether, Docker and containerization provide a powerful foundation for building scalable, maintainable, and production-ready AI solutions.
 
 
 ## How do you finetune the LLM model from raw?
 
-**Data Preparation**:
-- **Dataset Curation**: Collect and clean domain-specific training data
-- **Tokenization**: Process text using the model's specific tokenizer
-- **Data Formatting**: Structure data for the chosen fine-tuning approach (instruction-following, completion, etc.)
-- **Train/Validation Split**: Prepare evaluation datasets to monitor overfitting
+Finetuning an LLM model from raw involves a structured process that spans data preparation, training approaches, technical implementation, and deployment. The first step is preparing high-quality datasets—this includes curating and cleaning domain-specific data, tokenizing it with the model’s native tokenizer, and formatting it according to the fine-tuning method (e.g., instruction-following or completion-based). A proper train/validation split is also essential to monitor generalization and avoid overfitting.
 
-**Fine-tuning Approaches**:
-- **Full Fine-tuning**: Update all model parameters (resource-intensive)
-- **Parameter-Efficient Methods**: LoRA, QLoRA, or adapter-based approaches
-- **Instruction Tuning**: Train on instruction-response pairs for better task following
-- **RLHF (Reinforcement Learning from Human Feedback)**: Align model outputs with human preferences
+For training, several strategies are possible depending on resource availability and goals. Full fine-tuning updates all parameters but is computationally heavy, while parameter-efficient methods like LoRA, QLoRA, or adapters allow effective fine-tuning with reduced cost. Instruction tuning improves task-following behavior by training on instruction–response pairs, and reinforcement learning from human feedback (RLHF) aligns the model with user preferences through iterative reward optimization.
 
-**Technical Implementation**:
-- **Framework Selection**: Use libraries like Hugging Face Transformers, DeepSpeed, or Axolotl
-- **Hardware Requirements**: Multi-GPU setups or cloud instances with sufficient VRAM
-- **Hyperparameter Tuning**: Learning rate scheduling, batch size optimization, gradient accumulation
-- **Checkpointing**: Save intermediate model states for recovery and evaluation
+On the technical side, frameworks such as Hugging Face Transformers, DeepSpeed, or Axolotl provide ready-to-use tools for fine-tuning. Hardware is a critical factor, often requiring multi-GPU setups or cloud environments with large VRAM. Key hyperparameters like learning rate, batch size, and gradient accumulation need careful tuning to achieve stable training. Regular checkpointing ensures that intermediate states are saved for recovery, analysis, or future re-training.
 
-**Evaluation and Deployment**:
-- **Performance Metrics**: Perplexity, BLEU scores, task-specific benchmarks
-- **Safety Testing**: Check for harmful outputs or bias amplification
-- **Model Optimization**: Quantization, pruning, or distillation for deployment efficiency
-- **Version Management**: Track model lineage and performance across iterations
+Finally, evaluation and deployment ensure that the fine-tuned model is effective and safe. Performance is measured using perplexity, BLEU scores, or task-specific benchmarks, while safety testing checks for harmful or biased outputs. For deployment, optimization techniques like quantization, pruning, or distillation make the model more efficient and cost-effective. Version management tracks model changes over time, ensuring reproducibility and transparency in production environments.
