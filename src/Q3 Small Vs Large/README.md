@@ -1,19 +1,17 @@
-**"customer-100000.csv" (Small File) - Implicit Pandas Approach**
+**Processing Small File ("customer-100000.csv") – Pandas Approach**
 
-*   **Likely Pandas Usage (Assumed):** Given the context of the first code example, the initial approach for handling "customer-100000.csv" *likely* involves using `pandas` directly. This is a common and straightforward approach for datasets that fit comfortably into memory.  While there's no explicit `pd.read_csv()` shown, it's implied by the `df.shape`, `df.head()`, `df.info()`, etc. operations.
-*   **Full Load into Memory:** The pandas approach loads the entire CSV file into RAM. The system has the capacity to load the 100,000 file.
+The dataset `"customer-100000.csv"` is processed using `pandas`, which provides a straightforward and efficient solution for datasets that fit comfortably into memory. Operations such as `df.shape`, `df.head()`, and `df.info()` indicate that the full dataset is loaded into a `pandas.DataFrame`. Loading the entire file into RAM allows quick and simple data exploration and manipulation without additional memory management considerations.
 
-**"customers-2000000.csv" (Large File) - Explicit `dask.dataframe` Approach**
+**Processing Large File ("customers-2000000.csv") – Dask Approach**
 
-*   **`dask.dataframe` Necessity:** The second code example *explicitly* uses `dask.dataframe`. This is crucial because, in that case, the assumption is that the machine's memory capacity cannot handle reading two million files.
-*   **Partitioned Data:** The large file is divided into smaller partitions which the machine can handle reading one by one. It's the way around not having large memory.
+For the larger dataset `"customers-2000000.csv"`, `dask.dataframe` is employed to handle memory constraints. Due to the dataset size, loading all rows into memory at once is not feasible. Dask partitions the data into smaller chunks that are processed sequentially or in parallel, enabling efficient computation while keeping memory usage within limits. Lazy evaluation ensures that computations are only executed when necessary, further optimizing resource utilization.
 
-**Key Differences Summarized**
+**Comparison of Approaches**
 
-| Feature           | Small File ("customer-100000.csv")         | Large File ("customers-2000000.csv")                  |
-| ----------------- | --------------------------------------------- | ------------------------------------------------------- |
-| Underlying Dataframe | Probably `pandas.DataFrame`                 | `dask.dataframe`                                         |
-| Memory Load       | Loads entire file into memory                 | Partitions data; loads partitions on demand           |
-| Code Complexity   | Simpler (direct `pandas` operations)          | More complex (requires `dask` setup, lazy evaluation)   |
-| Scalability       | Limited (constrained by RAM)                   | Scalable to larger-than-memory datasets              |
-| Compute time        | Faster for small computation           | Faster for large computation because of parralization |
+| Feature            | Small File ("customer-100000.csv") | Large File ("customers-2000000.csv")            |
+| ------------------ | ---------------------------------- | ----------------------------------------------- |
+| Dataframe          | `pandas.DataFrame`                 | `dask.dataframe`                                |
+| Memory Load        | Entire dataset loaded into memory  | Partitioned, loaded on demand                   |
+| Code Complexity    | Simple, direct Pandas operations   | Higher, requires Dask setup and lazy evaluation |
+| Scalability        | Limited by available RAM           | Scalable to datasets exceeding memory           |
+| Compute Efficiency | Fast for small datasets            | Optimized for large datasets via parallelism    |
